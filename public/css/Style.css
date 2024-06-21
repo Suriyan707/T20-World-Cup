@@ -1,0 +1,12 @@
+.navbar {
+    position: fixed;
+    width: 100%;
+    z-index: 1000;
+}
+.ball-img {
+    width: 50px;
+    transition: transform 0.2s;
+}
+.ball-img:hover {
+    transform: translateY(-10px);
+}
