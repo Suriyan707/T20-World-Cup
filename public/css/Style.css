@@ -10,3 +10,7 @@
 .ball-img:hover {
     transform: translateY(-10px);
 }
+
+        .error { color: red; }
+        .hidden { display: none; }
+    
