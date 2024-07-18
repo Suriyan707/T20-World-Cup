@@ -4,8 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>T20 World Cup</title>
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="./css/Style.css">
+    <style>
+        .error { color: red; }
+        .hidden { display: none; }
+    </style>
 </head>
 <body>
     <header>
@@ -23,7 +27,10 @@
                         <a class="nav-link" href="#">Teams</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Contact</a>
+                        <a class="nav-link" href="#contact">Contact</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="post.html">Post</a>
                     </li>
                 </ul>
             </div>
@@ -46,14 +53,14 @@
                         <td>01/01/2024</td>
                         <td>Stadium 1</td>
                     </tr>
-                    <!-- Add more rows as needed -->
+                   
                 </tbody>
             </table>
         </section>
         <section id="teams" class="mt-5">
             <h1>Teams</h1>
             <div class="row">
-                <!-- Cards for teams -->
+               
                 <div class="col-md-4">
                     <div class="card">
                         <img src="./images/team1.png" class="card-img-top" alt="Team 1 Logo">
@@ -66,8 +73,7 @@
                         </div>
                     </div>
                 </div>
-                
-                <div class="col-md-5">
+                <div class="col-md-4">
                     <div class="card">
                         <img src="./images/team 2.jpeg" class="card-img-top" alt="Team 1 Logo">
                         <div class="card-body">
@@ -79,11 +85,10 @@
                         </div>
                     </div>
                 </div>
-            </div>
-                <!-- Add more cards as needed -->
+              
             </div>
         </section>
-        <!-- Modals for Team Details -->
+        
         <div class="modal fade" id="team1Modal" tabindex="-1" aria-labelledby="team1ModalLabel" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
@@ -102,7 +107,6 @@
                 </div>
             </div>
         </div>
-
         <div class="modal fade" id="team2Modal" tabindex="-1" aria-labelledby="team2ModalLabel" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
@@ -121,55 +125,114 @@
                 </div>
             </div>
         </div>
-        <!-- Add more modals as needed -->
+       
         <section id="contact" class="mt-5">
             <h1>Contact</h1>
-            <form>
+            <div id="error-message" class="error hidden">Please check your data</div>
+            <form id="contact-form">
                 <div class="form-group">
                     <label for="name">Name</label>
-                    <input type="text" class="form-control" id="name" placeholder="Enter your name">
+                    <input type="text" class="form-control" id="name" placeholder="Enter your name" required>
                 </div>
                 <div class="form-group">
                     <label for="email">Email</label>
-                    <input type="email" class="form-control" id="email" placeholder="Enter your email">
+                    <input type="email" class="form-control" id="email" placeholder="Enter your email" required>
                 </div>
                 <div class="form-group">
                     <label for="phone">Phone Number</label>
-                    <input type="text" class="form-control" id="phone" placeholder="Enter your phone number">
+                    <input type="text" class="form-control" id="phone" placeholder="Enter your phone number" required>
                 </div>
                 <div class="form-group">
                     <label for="team">Team Name</label>
-                    <select class="form-control" id="team">
-                        <option>Team 1</option>
-                        <option>Team 2</option>
-                        <!-- Add more options as needed -->
+                    <select class="form-control" id="team" required>
+                        <option value="">Select a team</option>
+                        <option value="Team 1">Team 1</option>
+                        <option value="Team 2">Team 2</option>
+                        
                     </select>
                 </div>
-                <div class="form-check">
-                    <input type="checkbox" class="form-check-input" id="whatsappNotifications">
-                    <label class="form-check-label" for="whatsappNotifications">Do you want to receive WhatsApp notifications?</label>
-                </div>
-                <div class="form-group mt-3">
-                    <label>Do you like T20?</label><br>
-                    <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="t20" id="likeT20Yes" value="yes">
-                        <label class="form-check-label" for="likeT20Yes">Yes</label>
+                <div id="extra-fields" class="hidden">
+                    <div class="form-check">
+                        <input type="checkbox" class="form-check-input" id="notifications">
+                        <label class="form-check-label" for="notifications">Do you want to receive notifications?</label>
                     </div>
-                    <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="t20" id="likeT20No" value="no">
-                        <label class="form-check-label" for="likeT20No">No</label>
+                    <div class="form-group mt-3">
+                        <label>Do you like T20?</label><br>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="t20" id="likeT20Yes" value="yes">
+                            <label class="form-check-label" for="likeT20Yes">Yes</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="t20" id="likeT20No" value="no">
+                            <label class="form-check-label" for="likeT20No">No</label>
+                        </div>
                     </div>
                 </div>
                 <button type="submit" class="btn btn-primary">Submit</button>
+                <button type="button" id="reset-button" class="btn btn-secondary">Reset</button>
             </form>
+            <div id="thank-you-message" class="hidden">
+                <h2>Thank you for your submission</h2>
+                <pre id="submitted-data"></pre>
+                <button id="delete-button" class="btn btn-danger">Delete</button>
+            </div>
         </section>
     </main>
     <footer class="text-center mt-5">
         <img src="./images/balls.jpeg" alt="Ball Image" class="ball-img">
     </footer>
+
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script src="scripts.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const teamSelect = document.getElementById('team');
+            const extraFields = document.getElementById('extra-fields');
+            const contactForm = document.getElementById('contact-form');
+            const thankYouMessage = document.getElementById('thank-you-message');
+            const submittedData = document.getElementById('submitted-data');
+            const deleteButton = document.getElementById('delete-button');
+            const errorMessage = document.getElementById('error-message');
+            const resetButton = document.getElementById('reset-button');
+
+            teamSelect.addEventListener('change', function () {
+                if (teamSelect.value) {
+                    extraFields.classList.remove('hidden');
+                } else {
+                    extraFields.classList.add('hidden');
+                }
+            });
+
+            contactForm.addEventListener('submit', function (event) {
+                event.preventDefault();
+
+                if (contactForm.checkValidity()) {
+                    const formData = new FormData(contactForm);
+                    const data = Object.fromEntries(formData.entries());
+                    submittedData.textContent = JSON.stringify(data, null, 2);
+                    thankYouMessage.classList.remove('hidden');
+                    contactForm.classList.add('hidden');
+                    errorMessage.classList.add('hidden');
+                } else {
+                    errorMessage.classList.remove('hidden');
+                }
+            });
+
+            deleteButton.addEventListener('click', function () {
+                thankYouMessage.classList.add('hidden');
+                contactForm.reset();
+                contactForm.classList.remove('hidden');
+                extraFields.classList.add('hidden');
+            });
+
+            resetButton.addEventListener('click', function () {
+                contactForm.reset();
+                extraFields.classList.add('hidden');
+                errorMessage.classList.add('hidden');
+            });
+        });
+    </script>
 </body>
 </html>
